@@ -152,6 +152,8 @@ Description of all accepted environment variables follows.
 
 **PRUNE_PREFIX** - filter data to prune by prefix of the archive. Empty by default - prune all data
 
+**KEEP_WITHIN** - keep all archives within this time interval. Empty by default
+
 **KEEP_DAILY** - keep specified number of daily backups. Defaults to 7
 
 **KEEP_WEEKLY** - keep specified number of weekly backups. Defaults to 4

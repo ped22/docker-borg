@@ -113,6 +113,14 @@ if [ -n "${PRUNE:-}" ]; then
     else
         PRUNE_PREFIX=''
     fi
+    if [ -n "${KEEP_WITHIN:-}" ]; then
+        KEEP_WITHIN="--keep-within=${KEEP_WITHIN}"
+    else
+        KEEP_WITHIN=''
+    fi
+    if [ -z "${KEEP_DAILY:-}" ]; then
+        KEEP_DAILY=7
+    fi
     if [ -z "${KEEP_DAILY:-}" ]; then
         KEEP_DAILY=7
     fi
@@ -123,7 +131,7 @@ if [ -n "${PRUNE:-}" ]; then
         KEEP_MONTHLY=6
     fi
 
-    borg prune -v --stats --show-rc $PRUNE_PREFIX --keep-daily=$KEEP_DAILY --keep-weekly=$KEEP_WEEKLY --keep-monthly=$KEEP_MONTHLY
+    borg prune -v --stats --show-rc $PRUNE_PREFIX $KEEP_WITHIN --keep-daily=$KEEP_DAILY --keep-weekly=$KEEP_WEEKLY --keep-monthly=$KEEP_MONTHLY
 fi
 
 if [ "${BORG_SKIP_CHECK:-}" != '1' ] && [ "${BORG_SKIP_CHECK:-}" != "true" ]; then
